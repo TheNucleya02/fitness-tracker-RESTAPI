@@ -1,0 +1,58 @@
+# ==========================
+# Environment & Secrets
+# ==========================
+.env
+.env.*
+!.env.example
+
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ==========================
+# Virtual Environment
+# ==========================
+venv/
+env/
+.venv/
+ENV/
+
+# ==========================
+# Django
+# ==========================
+db.sqlite3
+*.sqlite3
+media/
+staticfiles/
+static/
+
+# ==========================
+# macOS
+# ==========================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ==========================
+# IDE / Editor
+# ==========================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ==========================
+# Logs & Local config
+# ==========================
+*.log
+local_settings.py
