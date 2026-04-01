@@ -53,23 +53,23 @@ function initAuthLogic() {
     // Login Submission
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         
         try {
             const res = await fetch(`${API_BASE}/api/token/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ email, password })
             });
 
             if (!res.ok) throw new Error("Invalid credentials");
             const data = await res.json();
             setToken(data.access);
             
-            // Fetch users to find my ID simply by matching username.
+            // Fetch users to find my ID simply by matching email.
             // (In a perfect backend, /api/token/ would return user details, but we'll fetch list)
-            fetchUsersAndFindId(username);
+            fetchUsersAndFindId(email);
             
         } catch (err) {
             loginError.classList.remove('hidden');
@@ -98,7 +98,7 @@ function initAuthLogic() {
             if (!res.ok) throw new Error("Creation failed");
             
             // Auto login
-            document.getElementById('username').value = payload.username;
+            document.getElementById('email').value = payload.email;
             document.getElementById('password').value = payload.password;
             document.getElementById('showLogin').click();
             loginForm.dispatchEvent(new Event('submit'));
@@ -109,11 +109,11 @@ function initAuthLogic() {
     });
 }
 
-function fetchUsersAndFindId(usernameLogin) {
+function fetchUsersAndFindId(emailLogin) {
     fetch(`${API_BASE}/users/user/`)
     .then(r => r.json())
     .then(users => {
-        const me = users.find(u => u.username === usernameLogin);
+        const me = users.find(u => u.email === emailLogin);
         if(me) localStorage.setItem('user_id', me.id);
         window.location.href = 'index.html';
     });
