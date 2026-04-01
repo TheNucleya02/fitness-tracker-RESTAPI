@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .models import Workout
 from .serializers import WorkoutSerializers
 from rest_framework import viewsets, permissions
