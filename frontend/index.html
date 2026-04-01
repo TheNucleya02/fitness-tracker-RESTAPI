@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CorpWellness | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span style="font-size: 1.5rem;">🍃</span> <span class="gradient-text">CorpWellness</span>
+        </div>
+        <div class="nav-links">
+            <a class="active" id="nav-dashboard">Dashboard</a>
+            <a id="nav-workouts">Company Workouts</a>
+            <a id="logoutBtn" style="color: var(--danger);">Logout</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Dashboard Section -->
+        <section id="section-dashboard">
+            <h2 class="mb-4">Welcome back, <span id="userNameDisplay" class="gradient-text">Colleague</span>!</h2>
+            
+            <div class="glass-panel mb-4">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3>Log Daily Activity</h3>
+                </div>
+                <form id="activityForm" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Date</label>
+                        <input type="date" id="actDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Steps Taken</label>
+                        <input type="number" id="actSteps" placeholder="e.g. 10000" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Sleep (Hours)</label>
+                        <input type="number" id="actSleep" placeholder="e.g. 7.5" step="0.1" max="24" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Active Time (HH:MM:SS)</label>
+                        <input type="text" id="actTime" placeholder="e.g. 01:30:00" required pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}">
+                    </div>
+                    <div style="grid-column: 1 / -1;">
+                         <button type="submit" class="btn btn-primary">Save Activity</button>
+                         <div id="actMsg" class="mt-4 text-center"></div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="glass-panel">
+                <h3>Your Latest Stats</h3>
+                <div class="stats-grid mt-4" id="userStatsGrid">
+                    <!-- populated via js -->
+                    <div class="stat-card">
+                        <div class="stat-value">--</div>
+                        <div class="stat-label">Total Steps</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar / Leaderboard -->
+        <aside id="sidebar">
+            <div class="glass-panel" style="height: 100%;">
+                <h3 style="display: flex; align-items: center; gap: 0.5rem;"><span style="font-size:1.2rem">🏆</span> Leaderboard</h3>
+                <p class="text-muted" style="font-size: 0.875rem; margin-bottom: 1.5rem;">Top steps across the company</p>
+                
+                <ul class="leaderboard-list" id="leaderboardList">
+                    <!-- populated via js -->
+                    <li class="leaderboard-item">
+                        <span class="text-muted">Loading...</span>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Workouts Section (Hidden by default) -->
+        <section id="section-workouts" class="hidden" style="grid-column: 1 / -1;">
+            <h2 class="mb-4">Company Approved Workouts</h2>
+            <div class="glass-panel" id="workoutsContainer">
+                <p class="text-muted">Loading workouts...</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CorpWellness | Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="glass-panel text-center" id="login-panel">
+            <h2 class="gradient-text">CorpWellness</h2>
+            <p class="text-muted mb-4">Sign in to track your wellness</p>
+            
+            <form id="loginForm">
+                <div class="form-group text-left">
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="form-group text-left">
+                    <input type="password" id="password" placeholder="Password" required>
+                </div>
+                <div id="loginError" class="error-msg hidden">Invalid credentials.</div>
+                <button type="submit" class="btn btn-primary mt-4">Sign In</button>
+            </form>
+            
+            <p class="mt-4" style="font-size: 0.875rem; color: var(--text-muted)">
+                New employee? <a href="#" id="showRegister" style="color: var(--primary);">Register here</a>
+            </p>
+        </div>
+
+        <!-- Register Panel -->
+        <div class="glass-panel text-center hidden" id="register-panel">
+            <h2 class="gradient-text">Join Wellness</h2>
+            <p class="text-muted mb-4">Create your employee account</p>
+            
+            <form id="registerForm">
+                <div class="form-group text-left">
+                    <input type="text" id="regFirstname" placeholder="First Name" required>
+                </div>
+                <div class="form-group text-left">
+                    <input type="text" id="regLastname" placeholder="Last Name" required>
+                </div>
+                <div class="form-group text-left">
+                    <input type="email" id="regEmail" placeholder="Email Address" required>
+                </div>
+                <div class="form-group text-left">
+                    <input type="text" id="regUsername" placeholder="Username (max 10 chars)" maxlength="10" required>
+                </div>
+                <div class="form-group text-left">
+                    <input type="password" id="regPassword" placeholder="Password" required>
+                </div>
+                <div id="regError" class="error-msg hidden">Error creating account.</div>
+                <button type="submit" class="btn btn-primary mt-4">Register Workspace</button>
+            </form>
+            
+            <p class="mt-4" style="font-size: 0.875rem; color: var(--text-muted)">
+                Already have an account? <a href="#" id="showLogin" style="color: var(--primary);">Log in</a>
+            </p>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
