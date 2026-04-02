@@ -167,7 +167,26 @@ MESSAGE_TAGS = {
 }
 
 # CORS Settings
-CORS_ALLOW_ALL_ORIGINS = True
+# In production: set FRONTEND_URL environment variable to your deployed frontend URL
+# e.g. FRONTEND_URL=https://corpwellness.vercel.app
+# In development: falls back to allowing localhost origins
+_frontend_url = os.environ.get('FRONTEND_URL', '')
+
+if _frontend_url:
+    CORS_ALLOW_ALL_ORIGINS = False
+    CORS_ALLOWED_ORIGINS = [
+        _frontend_url.rstrip('/'),  # e.g. https://corpwellness.vercel.app
+    ]
+else:
+    # Development fallback — allow local file and localhost access only
+    CORS_ALLOW_ALL_ORIGINS = False
+    CORS_ALLOWED_ORIGINS = [
+        'http://localhost:3000',
+        'http://127.0.0.1:3000',
+        'http://localhost:8000',
+        'http://127.0.0.1:8000',
+    ]
+    CORS_ALLOW_ALL_ORIGINS = True  # Easier for file:// based local dev
 
 # REST Framework settings with modern JWT
 REST_FRAMEWORK = {
