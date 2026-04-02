@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8000';
+const API_BASE = "https://fitness-tracker-restapi.onrender.com";
 
 // Utilities
 const getToken = () => localStorage.getItem('access_token');
@@ -279,7 +279,7 @@ async function loadWorkouts() {
                 <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.5rem;">
                     <h3 style="color:var(--primary)">${w.name} <span style="font-size:0.8rem; background: rgba(255,255,255,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; float:right">${w.type}</span></h3>
                     <p class="text-muted" style="margin-bottom:1rem; font-size:0.9rem">${w.description}</p>
-                    <p><strong>Duration:</strong> ${w.duration} seconds</p>
+                    <p><strong>Duration:</strong> ${w.duration} mins</p>
                 </div>
             `;
         });
