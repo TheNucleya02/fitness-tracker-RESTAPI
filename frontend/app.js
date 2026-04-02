@@ -79,6 +79,7 @@ function initAuthLogic() {
     // Registration Submission
     registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        regError.classList.add('hidden');
         
         const payload = {
             username: document.getElementById('regUsername').value,
@@ -86,7 +87,7 @@ function initAuthLogic() {
             email: document.getElementById('regEmail').value,
             first_name: document.getElementById('regFirstname').value,
             last_name: document.getElementById('regLastname').value,
-            phonenumber: '0000000000' // mock since it's required in model
+            phonenumber: '0000000000'
         };
 
         try {
@@ -95,15 +96,29 @@ function initAuthLogic() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
             });
-            if (!res.ok) throw new Error("Creation failed");
-            
-            // Auto login
+
+            if (!res.ok) {
+                const errData = await res.json().catch(() => ({}));
+                // Log the full API error to browser console for debugging
+                console.error('Registration failed — HTTP', res.status, errData);
+                // Show a meaningful message if the API returned one
+                const detail = Object.values(errData)[0];
+                const msg = Array.isArray(detail) ? detail[0] : (detail || `Server error ${res.status}`);
+                regError.textContent = msg;
+                regError.classList.remove('hidden');
+                return;
+            }
+
+            // Auto login after successful registration
             document.getElementById('email').value = payload.email;
             document.getElementById('password').value = payload.password;
             document.getElementById('showLogin').click();
             loginForm.dispatchEvent(new Event('submit'));
-            
+
         } catch (err) {
+            // Network / CORS error — check browser console
+            console.error('Registration network error:', err);
+            regError.textContent = 'Network error — check browser console (F12)';
             regError.classList.remove('hidden');
         }
     });
