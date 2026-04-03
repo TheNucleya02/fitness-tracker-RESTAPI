@@ -2,7 +2,7 @@
 
 > A full-stack corporate wellness platform that helps employees log daily activity, track personal stats, compete on a company-wide leaderboard, and access company-approved workout plans.
 
-**Frontend** → Deployed on [Netlify](https://netlify.com) &nbsp;|&nbsp; **Backend API** → Deployed on [Render](https://render.com)
+**Frontend** → Deployed on [Netlify](corpwell.netlify.app) &nbsp;|&nbsp; **Backend API** → Deployed on [Render]([https://render.com](https://fitness-tracker-restapi.onrender.com/docs/))
 
 ---
 
@@ -68,7 +68,7 @@ fitness-tracker/
 
 ## 🔌 API Endpoints
 
-Base URL: `https://<your-render-domain>`
+Base URL: `https://https://fitness-tracker-restapi.onrender.com/docs/`
 
 ### Authentication
 | Method | Endpoint | Description |
